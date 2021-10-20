@@ -15,7 +15,11 @@ export default function Header() {
         <Button>Products</Button>
       </NavLink>
 
-      <NavLink to="product/:id">
+      <NavLink exact to="/product/:id">
+        <Button>Product</Button>
+      </NavLink>
+
+      <NavLink to="/create">
         <Button>Product</Button>
       </NavLink>
     </div>
