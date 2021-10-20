@@ -1,10 +1,11 @@
+import Products from './pages/Products/Products'
 
 import './App.css'
 
 function App() {
   return (
     <>
-      App
+      <Products />
     </>
   )
 }
