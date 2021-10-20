@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 export const getInitialStore = () => ({
   isAuth: true,
   productsData: [],
-  categories: []
+  categories: [],
+  toggleLoader: false
 })
 
 const mainSlice = createSlice({
@@ -17,13 +18,18 @@ const mainSlice = createSlice({
     updateCategories: (store, { payload }) => ({
       ...store,
       categories: payload
+    }),
+    toggleLoader: (store, { payload }) => ({
+      ...store,
+      showLoader: typeof payload === 'boolean' ? payload : !store.showLoader,
     })
   }
 })
 
 export const {
   updateProductsData,
-  updateCategories
+  updateCategories,
+  toggleLoader
 } = mainSlice.actions
 
 export default mainSlice.reducer

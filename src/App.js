@@ -1,11 +1,15 @@
 import Products from './pages/Products/Products'
+import Loader from './components/Loader'
+import Router from './Router/Router'
 
-import './App.css'
+import './App.scss'
 
 function App() {
   return (
     <>
-      <Products />
+      {/* <Loader /> */}
+
+      <Router />
     </>
   )
 }

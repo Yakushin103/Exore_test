@@ -13,6 +13,8 @@ import {
   getProductsWithFilter
 } from '../../store/products/thunks'
 
+import { toggleLoader } from '../../store/products/reducer'
+
 import './Products.scss'
 
 const piecesArr = [
@@ -29,10 +31,11 @@ export default function Products() {
   const products = useSelector(({ products }) => products)
 
   useEffect(() => {
+    // dispatch(toggleLoader(true))
     if (catFilter === 'All') {
       dispatch(getProducts(pieces))
     } else {
-      dispatch(getProductsWithFilter({pieces, catFilter}))
+      dispatch(getProductsWithFilter({ pieces, catFilter }))
     }
   }, [dispatch, pieces, catFilter])
 

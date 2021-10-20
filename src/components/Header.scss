@@ -1,0 +1,24 @@
+.header {
+  width: 100%;
+  background-color: #ccc;
+  display: flex;
+  justify-content: space-around;
+
+  a {
+    text-decoration: none;
+    transition: .7 all;
+
+    button {
+      color: #767373;
+      font-weight: bold;
+      padding: 20px;
+    }
+    
+
+    &.active button{
+      color: black;
+    }
+  }
+
+  
+}
