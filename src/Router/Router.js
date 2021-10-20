@@ -6,6 +6,7 @@ import Main from '../pages/Main/Main'
 import Header from '../components/Header'
 
 const Products = lazyWrapper(lazy(() => import('../pages/Products/Products')))
+const Product = lazyWrapper(lazy(() => import('../pages/Product/Product')))
 
 
 export default function Router() {
@@ -22,6 +23,13 @@ export default function Router() {
         <Route
           path="/"
           component={Main}
+          exact
+        />
+
+        <Route
+          path="/product/:id"
+          component={Product}
+          exact
         />
       </Switch>
     </div>

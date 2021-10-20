@@ -1,7 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import productsApi from '../../api/productsApi'
-import { updateProductsData, updateCategories } from './reducer'
+import {
+  updateProductsData,
+  updateCategories,
+  updateProduct
+} from './reducer'
 
 export const getProducts = createAsyncThunk(
   'products/getProducts',
@@ -41,3 +45,17 @@ export const getCategories = createAsyncThunk(
     }
   }
 )
+
+export const getProductById = createAsyncThunk(
+  'products/getProductById',
+  async (arg, { dispatch }) => {
+    try {
+      const product = await productsApi.getProductById(arg)
+
+      dispatch(updateProduct(product))
+    } catch (err) {
+      dispatch(updateProduct(null))
+    }
+  }
+)
+

@@ -1,4 +1,4 @@
-
+import { useHistory } from 'react-router-dom'
 // import Box from '@mui/material/Box';
 // import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid'
@@ -17,6 +17,12 @@ export default function FirstTab({
   catArray,
   setCatFilter,
   catFilter }) {
+  const history = useHistory()
+
+  const handleChange = (id) => {
+    history.push(`/product/${id}`)
+  }
+  
   return (
     <Grid container spacing={1}>
       <Grid
@@ -42,7 +48,7 @@ export default function FirstTab({
         productsData.map((prod) => (
           <Grid key={prod.id} item xs={4}>
             <Card sx={{ maxWidth: 345, height: '100%' }}>
-              <CardActionArea>
+              <CardActionArea onClick={() => handleChange(prod.id)}>
                 <CardMedia
                   className="products-card-image"
                   component="img"

@@ -4,7 +4,8 @@ export const getInitialStore = () => ({
   isAuth: true,
   productsData: [],
   categories: [],
-  toggleLoader: false
+  toggleLoader: false,
+  product: null
 })
 
 const mainSlice = createSlice({
@@ -22,6 +23,10 @@ const mainSlice = createSlice({
     toggleLoader: (store, { payload }) => ({
       ...store,
       showLoader: typeof payload === 'boolean' ? payload : !store.showLoader,
+    }),
+    updateProduct: (store, { payload }) => ({
+      ...store,
+      product: payload
     })
   }
 })
@@ -29,7 +34,8 @@ const mainSlice = createSlice({
 export const {
   updateProductsData,
   updateCategories,
-  toggleLoader
+  toggleLoader,
+  updateProduct
 } = mainSlice.actions
 
 export default mainSlice.reducer
