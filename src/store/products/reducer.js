@@ -5,7 +5,8 @@ export const getInitialStore = () => ({
   productsData: [],
   categories: [],
   toggleLoader: false,
-  product: null
+  product: null,
+  createdProduct: []
 })
 
 const mainSlice = createSlice({
@@ -27,6 +28,13 @@ const mainSlice = createSlice({
     updateProduct: (store, { payload }) => ({
       ...store,
       product: payload
+    }),
+    createdProduct: (store, { payload }) => ({
+      ...store,
+      createdProduct: [
+        ...store.createdProduct,
+        payload
+      ]
     })
   }
 })
@@ -35,7 +43,8 @@ export const {
   updateProductsData,
   updateCategories,
   toggleLoader,
-  updateProduct
+  updateProduct,
+  createdProduct
 } = mainSlice.actions
 
 export default mainSlice.reducer

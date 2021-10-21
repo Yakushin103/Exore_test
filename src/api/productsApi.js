@@ -26,7 +26,7 @@ export const getProductById = async (id) => {
 }
 
 export const createNewProduct = async (data) => {
-  return await instance.post(`/products`, data)
+  return await instance.post(`/products`, data).then(res => res.data)
 }
 
 const productsApi = {

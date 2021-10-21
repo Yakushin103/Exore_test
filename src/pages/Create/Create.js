@@ -8,7 +8,6 @@ import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import Checkbox from '@mui/material/Checkbox'
-import FormControlLabel from '@mui/material/FormControlLabel'
 import { createNewProduct } from '../../store/products/thunks'
 
 import './Create.scss'
@@ -37,8 +36,7 @@ export default function Create() {
     },
     validationSchema: CreateSchema,
     onSubmit: values => {
-      dispatch(createNewProduct(values))
-      // alert(JSON.stringify(values, null, 2));
+      dispatch(createNewProduct({ ...values, createAt: new Date() }))
     },
   })
 

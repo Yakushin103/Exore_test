@@ -31,7 +31,6 @@ export default function Products() {
   const products = useSelector(({ products }) => products)
 
   useEffect(() => {
-    // dispatch(toggleLoader(true))
     if (catFilter === 'All') {
       dispatch(getProducts(pieces))
     } else {
@@ -46,8 +45,6 @@ export default function Products() {
   const handleChangeTab = (event, newValue) => {
     setTab(newValue)
   }
-
-  console.log('productsData', products)
 
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>

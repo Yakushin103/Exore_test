@@ -4,7 +4,8 @@ import productsApi from '../../api/productsApi'
 import {
   updateProductsData,
   updateCategories,
-  updateProduct
+  updateProduct,
+  createdProduct
 } from './reducer'
 
 export const getProducts = createAsyncThunk(
@@ -64,10 +65,7 @@ export const createNewProduct = createAsyncThunk(
   async (arg, { dispatch }) => {
     try {
       const addProduct = await productsApi.createNewProduct(arg)
-      if (addProduct.status === 200) {
-        const products = await productsApi.getAll('All')
-        dispatch(updateProduct(products))
-      }
+      dispatch(createdProduct({...addProduct, createAt: arg.createAt}))
     } catch (err) {
       dispatch(updateProduct(null))
     }
