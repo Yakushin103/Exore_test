@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { toast } from 'react-toastify';
 
 import productsApi from '../../api/productsApi'
 import {
@@ -65,7 +66,12 @@ export const createNewProduct = createAsyncThunk(
   async (arg, { dispatch }) => {
     try {
       const addProduct = await productsApi.createNewProduct(arg)
-      dispatch(createdProduct({...addProduct, createAt: arg.createAt}))
+      toast.success('Product added!!!')
+      dispatch(createdProduct({
+        ...addProduct,
+        createAt: arg.createAt,
+        public: arg.public
+      }))
     } catch (err) {
       dispatch(updateProduct(null))
     }

@@ -8,6 +8,7 @@ import Header from '../components/Header'
 const Products = lazyWrapper(lazy(() => import('../pages/Products/Products')))
 const Product = lazyWrapper(lazy(() => import('../pages/Product/Product')))
 const Create = lazyWrapper(lazy(() => import('../pages/Create/Create')))
+const Edit = lazyWrapper(lazy(() => import('../pages/Edit/Edit')))
 
 export default function Router() {
   return (
@@ -35,6 +36,12 @@ export default function Router() {
         <Route
           path="/create"
           component={Create}
+          exact
+        />
+
+        <Route
+          path="/edit/:id"
+          component={Edit}
           exact
         />
       </Switch>

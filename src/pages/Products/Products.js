@@ -7,13 +7,12 @@ import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList'
 import TabPanel from '@mui/lab/TabPanel'
 import FirstTab from './Components/FirstTab'
+import SecondTab from './Components/SecondTab'
 import {
   getProducts,
   getCategories,
   getProductsWithFilter
 } from '../../store/products/thunks'
-
-import { toggleLoader } from '../../store/products/reducer'
 
 import './Products.scss'
 
@@ -27,6 +26,7 @@ export default function Products() {
   const [tab, setTab] = useState('first')
   const [catFilter, setCatFilter] = useState('All')
   const [pieces, setPieces] = useState('8')
+  const [checked, setChecked] = useState(true)
   const dispatch = useDispatch()
   const products = useSelector(({ products }) => products)
 
@@ -51,9 +51,9 @@ export default function Products() {
       <TabContext value={tab}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChangeTab} >
-            <Tab label="Item One" value="first" />
+            <Tab label="Products" value="first" />
 
-            <Tab label="Item Two" value="second" />
+            <Tab label="Created Product" value="second" />
           </TabList>
         </Box>
 
@@ -69,7 +69,13 @@ export default function Products() {
           />
         </TabPanel>
 
-        <TabPanel value="second">Item Two</TabPanel>
+        <TabPanel value="second">
+          <SecondTab
+            checked={checked}
+            setChecked={setChecked}
+            createdProduct={products.createdProduct}
+          />
+        </TabPanel>
       </TabContext>
     </Box>
   )
