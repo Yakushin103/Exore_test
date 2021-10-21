@@ -59,3 +59,18 @@ export const getProductById = createAsyncThunk(
   }
 )
 
+export const createNewProduct = createAsyncThunk(
+  'products/createNewProduct',
+  async (arg, { dispatch }) => {
+    try {
+      const addProduct = await productsApi.createNewProduct(arg)
+      if (addProduct.status === 200) {
+        const products = await productsApi.getAll('All')
+        dispatch(updateProduct(products))
+      }
+    } catch (err) {
+      dispatch(updateProduct(null))
+    }
+  }
+)
+

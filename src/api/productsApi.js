@@ -4,8 +4,6 @@ const instance = axios.create({
   baseURL: 'https://fakestoreapi.com'
 })
 
-const path = '/products'
-
 export const getAll = async (limit) => {
   return await instance.get(`/products?limit=${limit}`).then(res => res.data)
 }
@@ -27,9 +25,16 @@ export const getProductById = async (id) => {
   return await instance.get(`/products/${id}`).then(res => res.data)
 }
 
-export default {
+export const createNewProduct = async (data) => {
+  return await instance.post(`/products`, data)
+}
+
+const productsApi = {
   getAll,
   getAllCategories,
   getProductsFilter,
-  getProductById
+  getProductById,
+  createNewProduct
 }
+
+export default productsApi

@@ -1,3 +1,4 @@
+import { useDispatch } from 'react-redux'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
@@ -8,6 +9,7 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
+import { createNewProduct } from '../../store/products/thunks'
 
 import './Create.scss'
 
@@ -25,6 +27,7 @@ const CreateSchema = Yup.object().shape({
 });
 
 export default function Create() {
+  const dispatch = useDispatch()
   const formik = useFormik({
     initialValues: {
       title: '',
@@ -34,12 +37,12 @@ export default function Create() {
     },
     validationSchema: CreateSchema,
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+      dispatch(createNewProduct(values))
+      // alert(JSON.stringify(values, null, 2));
     },
   })
 
-  const { errors, touched } = formik
-  console.log('errors', touched)
+  const { errors } = formik
   return (
     <Container className="create">
       <Grid direction="column" container spacing={2}>
@@ -86,9 +89,11 @@ export default function Create() {
             />
           </Grid>
 
-          <Grid item>
-            <FormControlLabel
-              control={<Checkbox defaultChecked />}
+          <Grid item className="create-checkbox">
+            <Typography variant="p" gutterBottom >
+              Public
+            </Typography>
+            <Checkbox
               label="Public"
               name="public"
               value={formik.values.public}
@@ -97,16 +102,11 @@ export default function Create() {
             />
           </Grid>
 
-          <Grid item>
-            {errors.title && touched.title ? (
-              <Typography variant="p">
-                {errors.title}
-              </Typography>
-            ) : null}
-          </Grid>
-
           <Button
-            disabled={Object.values(errors).length}
+            disabled={
+              Object.values(errors).length !== 0 ||
+              formik.values.title === ""
+            }
             type="submit"
           >
             Submit
