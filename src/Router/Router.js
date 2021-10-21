@@ -20,6 +20,7 @@ export default function Router() {
   return (
     <div>
       <Header />
+      
       <Switch>
         <Route
           path="/products"
