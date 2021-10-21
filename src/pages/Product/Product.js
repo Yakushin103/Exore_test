@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
+import Alert from '@mui/material/Alert'
 
 import { getProductById } from '../../store/products/thunks'
 
@@ -20,9 +21,9 @@ export default function Product() {
   }, [id, dispatch])
 
   if (!product) {
-    return <Typography textAlign="center" variant="h4">
-      You need change any product
-    </Typography>
+    return <Alert className="product-item-alert" severity="info">
+      You need to select a product to view
+    </Alert>
   }
 
   return (

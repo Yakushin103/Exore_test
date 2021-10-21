@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux'
 import { useFormik } from 'formik'
-import * as Yup from 'yup'
 
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
@@ -9,21 +8,9 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import Checkbox from '@mui/material/Checkbox'
 import { createNewProduct } from '../../store/products/thunks'
+import { CreateSchema } from '../../utils/shema'
 
 import './Create.scss'
-
-const CreateSchema = Yup.object().shape({
-  title: Yup.string()
-    .min(2, 'Too Short!')
-    .max(30, 'Too Long!')
-    .required('Required'),
-  price: Yup.number()
-    .required('Required'),
-  description: Yup.string()
-    .min(2, 'Too Short!')
-    .max(300, 'Too Long!')
-    .required('Required'),
-});
 
 export default function Create() {
   const dispatch = useDispatch()
@@ -50,7 +37,7 @@ export default function Create() {
           </Typography>
         </Grid>
         <form onSubmit={formik.handleSubmit}>
-          <Grid item>
+          <Grid item xs={12}>
             <TextField
               className="create-input"
               label="Title"
@@ -100,15 +87,17 @@ export default function Create() {
             />
           </Grid>
 
-          <Button
-            disabled={
-              Object.values(errors).length !== 0 ||
-              formik.values.title === ""
-            }
-            type="submit"
-          >
-            Submit
-          </Button>
+          <Grid item>
+            <Button
+              disabled={
+                Object.values(errors).length !== 0 ||
+                formik.values.title === ""
+              }
+              type="submit"
+            >
+              Add
+            </Button>
+          </Grid>
         </form>
 
       </Grid>

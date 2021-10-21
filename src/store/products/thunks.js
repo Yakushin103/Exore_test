@@ -1,12 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'
 
 import productsApi from '../../api/productsApi'
 import {
   updateProductsData,
   updateCategories,
   updateProduct,
-  createdProduct
+  createdProduct,
+  removeProduct,
+  updateProductById
 } from './reducer'
 
 export const getProducts = createAsyncThunk(
@@ -73,7 +75,42 @@ export const createNewProduct = createAsyncThunk(
         public: arg.public
       }))
     } catch (err) {
-      dispatch(updateProduct(null))
+      dispatch(createdProduct(null))
+    }
+  }
+)
+
+export const removeProductById = createAsyncThunk(
+  'products/createNewProduct',
+  async (arg, { dispatch }) => {
+    try {
+      if (arg.global) {
+        await productsApi.removeProduct(arg.id)
+        toast.success('Product removed!!!')
+      } else {
+        dispatch(removeProduct(arg.id))
+        toast.success('Product removed!!!')
+      }
+    } catch (err) {
+      dispatch(removeProduct(null))
+    }
+  }
+)
+
+export const updateProductAC = createAsyncThunk(
+  'products/createNewProduct',
+  async (arg, { dispatch }) => {
+    try {
+      if (arg.global) {
+        await productsApi.updateProductById(arg.id)
+        toast.success('Product updated!!!')
+      } else {
+        console.log('data', arg.id, arg.data)
+        dispatch(updateProductById({ id: arg.id, data: arg.data }))
+        toast.success('Product updated!!!')
+      }
+    } catch (err) {
+      dispatch(updateProductById(null))
     }
   }
 )

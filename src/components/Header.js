@@ -20,7 +20,7 @@ export default function Header() {
       </NavLink>
 
       <NavLink exact to="/create">
-        <Button>Product</Button>
+        <Button>Create</Button>
       </NavLink>
 
       <NavLink exact to="/edit/:id">

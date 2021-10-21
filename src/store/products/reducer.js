@@ -35,6 +35,25 @@ const mainSlice = createSlice({
         ...store.createdProduct,
         payload
       ]
+    }),
+    removeProduct: (store, { payload }) => ({
+      ...store,
+      createdProduct: [
+        ...store.createdProduct.filter(prod => prod._id !== payload)
+      ]
+    }),
+    updateProductById: (store, { payload }) => ({
+      ...store,
+      createdProduct: [
+        ...store.createdProduct.map(prod => {
+          if (prod._id === payload._id) {
+            console.log('reducer', payload)
+            return { ...payload }
+          } else {
+            return prod
+          }
+        })
+      ]
     })
   }
 })
@@ -44,7 +63,9 @@ export const {
   updateCategories,
   toggleLoader,
   updateProduct,
-  createdProduct
+  createdProduct,
+  removeProduct,
+  updateProductById
 } = mainSlice.actions
 
 export default mainSlice.reducer

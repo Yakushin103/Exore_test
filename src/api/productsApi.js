@@ -29,12 +29,22 @@ export const createNewProduct = async (data) => {
   return await instance.post(`/products`, data).then(res => res.data)
 }
 
+export const removeProduct = async (id) => {
+  return await instance.delete(`/products/${id}`).then(res => res.data)
+}
+
+export const updateProductById = async (id) => {
+  return await instance.put(`/products/${id}`).then(res => res.data)
+}
+
 const productsApi = {
   getAll,
   getAllCategories,
   getProductsFilter,
   getProductById,
-  createNewProduct
+  createNewProduct,
+  removeProduct,
+  updateProductById
 }
 
 export default productsApi
