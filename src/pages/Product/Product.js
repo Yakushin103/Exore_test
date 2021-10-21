@@ -6,7 +6,7 @@ import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
 import Alert from '@mui/material/Alert'
-
+import ModalWindow from '../../components/ModalWindow'
 import { getProductById } from '../../store/products/thunks'
 
 import './Product.scss'
@@ -62,6 +62,13 @@ export default function Product() {
             <Typography variant="p">
               Description: {product.description}
             </Typography>
+          </Grid>
+
+          <Grid item xs={12}>
+            <ModalWindow
+              global={true}
+              id={id}
+            />
           </Grid>
         </Grid>
       </Container>

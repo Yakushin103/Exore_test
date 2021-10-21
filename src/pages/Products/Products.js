@@ -46,8 +46,6 @@ export default function Products() {
     setTab(newValue)
   }
 
-  console.log('products', products)
-
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>
       <TabContext value={tab}>

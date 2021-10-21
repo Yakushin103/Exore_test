@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import { useFormik } from 'formik'
 import { toast } from 'react-toastify'
 
-
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
@@ -27,7 +26,6 @@ export default function Edit() {
   const { id } = useParams()
   const dispatch = useDispatch()
   const product = useSelector(({ products }) => products.createdProduct.filter(item => item._id === id))
-  const products = useSelector(({ products }) => products.createdProduct)
 
   const { title, price, description } = !!product.length ? product[0] : intial
 
@@ -45,7 +43,6 @@ export default function Edit() {
         ...values
       }))
       toast.success('Product updated!!!')
-      // dispatch(updateProductAC({ global: false, id, data: { ...values } }))
     },
   })
 

@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import Box from '@mui/material/Box'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
@@ -18,6 +16,7 @@ export default function SelectFilter({ value, setFunc, arr, title }) {
         <InputLabel id="demo-simple-select-label">
           {title}
         </InputLabel>
+
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -27,16 +26,15 @@ export default function SelectFilter({ value, setFunc, arr, title }) {
         >
           {
             title === 'Categories' &&
-          <MenuItem value="All">
-            All
-          </MenuItem>
+            <MenuItem value="All">
+              All
+            </MenuItem>
           }
           {
             arr.map(item => (
               <MenuItem key={item.value || item} value={item.value || item}>
                 {item.label || item}
               </MenuItem>
-
             ))
           }
         </Select>

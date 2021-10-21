@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
 
 import products from './products/reducer'
+import user from './isAuth/reducer'
 
 const combinedReducer = combineReducers({
-  products
+  products,
+  user,
 })
 
 export const RESET_STORE_ACTION_TYPE = 'RESET_WHOLE_STORE';
