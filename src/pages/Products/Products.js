@@ -16,12 +16,6 @@ import {
 
 import './Products.scss'
 
-const piecesArr = [
-  { label: '8 pieces', value: '8' },
-  { label: '16 pieces', value: '16' },
-  { label: 'All pieces', value: 'all' },
-]
-
 export default function Products() {
   const [tab, setTab] = useState('first')
   const [catFilter, setCatFilter] = useState('All')
@@ -62,7 +56,6 @@ export default function Products() {
             productsData={products.productsData}
             pieces={pieces}
             setPieces={setPieces}
-            piecesArr={piecesArr}
             catArray={products.categories}
             catFilter={catFilter}
             setCatFilter={setCatFilter}

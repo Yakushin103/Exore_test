@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
 
 import lazyWrapper from '../utils/HOK/lazyWrapper'
-import Main from '../pages/Main/Main'
 import Header from '../components/Header'
 
 const Products = lazyWrapper(lazy(() => import('../pages/Products/Products')))
@@ -25,12 +24,6 @@ export default function Router() {
         <Route
           path="/products"
           component={Products}
-          exact
-        />
-
-        <Route
-          path="/"
-          component={Main}
           exact
         />
 

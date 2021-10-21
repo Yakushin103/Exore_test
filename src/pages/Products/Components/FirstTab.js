@@ -9,19 +9,12 @@ import Typography from '@mui/material/Typography'
 import CardActionArea from '@mui/material/CardActionArea'
 import TextField from '@mui/material/TextField'
 import SelectFilter from './SelectFilter'
-
-const searchFieldArr = [
-  { label: 'Category', value: 'category' },
-  { label: 'Description', value: 'description' },
-  { label: 'Title', value: 'title' },
-]
-
+import { searchFieldArr, piecesArr } from '../../../utils/constants'
 
 export default function FirstTab({
   productsData,
   pieces,
   setPieces,
-  piecesArr,
   catArray,
   setCatFilter,
   catFilter }) {

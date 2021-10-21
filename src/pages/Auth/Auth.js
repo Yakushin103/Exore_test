@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
@@ -10,9 +11,11 @@ import './Auth.scss'
 
 export default function Auth() {
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const handeleClick = () => {
     dispatch(getUser({ auth: true }))
+    history.push('/products')
   }
 
   return (
