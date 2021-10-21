@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import Grid from '@mui/material/Grid'
@@ -6,7 +7,15 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import CardActionArea from '@mui/material/CardActionArea'
+import TextField from '@mui/material/TextField'
 import SelectFilter from './SelectFilter'
+
+const searchFieldArr = [
+  { label: 'Category', value: 'category' },
+  { label: 'Description', value: 'description' },
+  { label: 'Title', value: 'title' },
+]
+
 
 export default function FirstTab({
   productsData,
@@ -16,12 +25,25 @@ export default function FirstTab({
   catArray,
   setCatFilter,
   catFilter }) {
+  const [searchText, setSearchText] = useState('')
+  const [searchField, setSearchField] = useState('category')
   const history = useHistory()
+  const [array, SetArray] = useState([])
+
+  useEffect(() => {
+    SetArray(productsData)
+  }, [productsData])
 
   const handleChange = (id) => {
     history.push(`/product/${id}`)
   }
-  
+
+  const onSearchText = (e) => {
+    let arr = productsData.filter(item => item[searchField].match(e.target.value))
+    SetArray(arr)
+    setSearchText(e.target.value)
+  }
+
   return (
     <Grid container spacing={1}>
       <Grid
@@ -42,9 +64,23 @@ export default function FirstTab({
           arr={catArray}
           title="Categories"
         />
+
+        <SelectFilter
+          value={searchField}
+          setFunc={setSearchField}
+          arr={searchFieldArr}
+          title="Search field"
+        />
+
+        <TextField
+          label="Search text"
+          type="search"
+          value={searchText}
+          onChange={onSearchText}
+        />
       </Grid>
       {
-        productsData.map((prod) => (
+        array.map((prod) => (
           <Grid key={prod.id} item xs={4}>
             <Card sx={{ maxWidth: 345, height: '100%' }}>
               <CardActionArea onClick={() => handleChange(prod.id)}>
