@@ -52,7 +52,6 @@ export default function Edit() {
     </Alert>
   }
 
-  console.log('product', !!product.length, product)
   return (
     <Container className="edit">
       <form onSubmit={formik.handleSubmit}>

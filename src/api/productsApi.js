@@ -12,7 +12,6 @@ export const getProductsFilter = (limit, filter) => {
   const data = filter === 'All' ?
     instance.get(`/products?limit=${limit}`).then(res => res.data) :
     instance.get(`/products/category/${filter}?limit=${limit}`).then(res => res.data)
-  console.log('data', data)
   return data
 }
 

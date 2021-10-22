@@ -105,7 +105,6 @@ export const updateProductAC = createAsyncThunk(
         await productsApi.updateProductById(arg.id)
         toast.success('Product updated!!!')
       } else {
-        console.log('data', arg.id, arg.data)
         dispatch(updateProductById({ id: arg.id, data: arg.data }))
         toast.success('Product updated!!!')
       }

@@ -41,7 +41,6 @@ const mainSlice = createSlice({
       createdProduct: [
         ...store.createdProduct.map(prod => {
           if (prod._id === payload._id) {
-            console.log('reducer', payload)
             return { ...payload }
           } else {
             return prod
