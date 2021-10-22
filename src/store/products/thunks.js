@@ -8,13 +8,15 @@ import {
   updateProduct,
   createdProduct,
   removeProduct,
-  updateProductById
+  updateProductById,
+  toggleLoader
 } from './reducer'
 
 export const getProducts = createAsyncThunk(
   'products/getProducts',
   async (arg, { dispatch }) => {
     try {
+      dispatch(toggleLoader())
       const products = await productsApi.getAll(arg)
 
       dispatch(updateProductsData(products))
@@ -28,6 +30,7 @@ export const getProductsWithFilter = createAsyncThunk(
   'products/getProductsWithFilter',
   async (arg, { dispatch }) => {
     try {
+      dispatch(toggleLoader())
       const products = await productsApi.getProductsFilter(arg.pieces, arg.catFilter)
 
       dispatch(updateProductsData(products))
@@ -54,8 +57,9 @@ export const getProductById = createAsyncThunk(
   'products/getProductById',
   async (arg, { dispatch }) => {
     try {
-      const product = await productsApi.getProductById(arg)
-
+      dispatch(toggleLoader())
+      const product = arg ? await productsApi.getProductById(arg) : null
+      
       dispatch(updateProduct(product))
     } catch (err) {
       dispatch(updateProduct(null))

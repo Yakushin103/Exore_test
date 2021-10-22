@@ -4,7 +4,8 @@ const getInitialStore = () => ({
   productsData: [],
   categories: [],
   product: null,
-  createdProduct: []
+  createdProduct: [],
+  showLoader: false,
 })
 
 const mainSlice = createSlice({
@@ -13,7 +14,8 @@ const mainSlice = createSlice({
   reducers: {
     updateProductsData: (store, { payload }) => ({
       ...store,
-      productsData: payload
+      productsData: payload,
+      showLoader: !store.showLoader
     }),
     updateCategories: (store, { payload }) => ({
       ...store,
@@ -21,7 +23,8 @@ const mainSlice = createSlice({
     }),
     updateProduct: (store, { payload }) => ({
       ...store,
-      product: payload
+      product: payload,
+      showLoader: !store.showLoader
     }),
     createdProduct: (store, { payload }) => ({
       ...store,
@@ -51,6 +54,10 @@ const mainSlice = createSlice({
           }
         })
       ]
+    }),
+    toggleLoader: (store, { payload }) => ({
+      ...store,
+      showLoader: !store.showLoader
     })
   }
 })
@@ -62,7 +69,8 @@ export const {
   createdProduct,
   removeProduct,
   updateProductById,
-  updateCreatedProduct
+  updateCreatedProduct,
+  toggleLoader
 } = mainSlice.actions
 
 export default mainSlice.reducer

@@ -1,7 +1,7 @@
 import Portal from '@mui/core/Portal'
 import ImageLoader from '../images/Spinner-2.gif'
 
-export default function Loader({ show }) {
+export default function Loader() {
 
   return (
     <Portal>

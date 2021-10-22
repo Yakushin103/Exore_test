@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
 import Alert from '@mui/material/Alert'
 import ModalWindow from '../../components/ModalWindow'
+import Loader from '../../components/Loader'
 import { getProductById } from '../../store/products/thunks'
 
 import './Product.scss'
@@ -14,11 +15,18 @@ import './Product.scss'
 export default function Product() {
   const dispatch = useDispatch()
   const product = useSelector(({ products }) => products.product)
+  const isLoader = useSelector(({ products }) => products.showLoader)
   const { id } = useParams()
 
   useEffect(() => {
-    dispatch(getProductById(id))
+    if (id !== ':id') {
+      dispatch(getProductById(id))
+    } else {
+      dispatch(getProductById(null))
+    }
   }, [id, dispatch])
+
+  if (isLoader) { return <Loader /> }
 
   if (!product) {
     return <Alert className="product-item-alert" severity="info">

@@ -8,6 +8,7 @@ import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import CardActionArea from '@mui/material/CardActionArea'
 import TextField from '@mui/material/TextField'
+import Loader from '../../../components/Loader'
 import SelectFilter from './SelectFilter'
 import { searchFieldArr, piecesArr } from '../../../utils/constants'
 
@@ -17,7 +18,8 @@ export default function FirstTab({
   setPieces,
   catArray,
   setCatFilter,
-  catFilter }) {
+  catFilter,
+  isLoader }) {
   const [searchText, setSearchText] = useState('')
   const [searchField, setSearchField] = useState('category')
   const history = useHistory()
@@ -73,30 +75,32 @@ export default function FirstTab({
         />
       </Grid>
       {
-        array.map((prod) => (
-          <Grid key={prod.id} item xs={4}>
-            <Card sx={{ maxWidth: 345, height: '100%' }}>
-              <CardActionArea onClick={() => handleChange(prod.id)}>
-                <CardMedia
-                  className="products-card-image"
-                  component="img"
-                  height="250px"
-                  image={prod.image}
-                  alt={prod.title}
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {prod.title}
-                  </Typography>
+        isLoader ?
+          <Loader /> :
+          array.map((prod) => (
+            <Grid key={prod.id} item xs={4}>
+              <Card sx={{ maxWidth: 345, height: '100%' }}>
+                <CardActionArea onClick={() => handleChange(prod.id)}>
+                  <CardMedia
+                    className="products-card-image"
+                    component="img"
+                    height="250px"
+                    image={prod.image}
+                    alt={prod.title}
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      {prod.title}
+                    </Typography>
 
-                  <Typography gutterBottom variant="h6" component="div">
-                    Price: {prod.price}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Grid>
-        ))
+                    <Typography gutterBottom variant="h6" component="div">
+                      Price: {prod.price}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          ))
       }
     </Grid>
 

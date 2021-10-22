@@ -69,6 +69,7 @@ export default function Products() {
 
         <TabPanel value="first">
           <FirstTab
+            isLoader={products.showLoader}
             productsData={products.productsData}
             pieces={pieces}
             setPieces={setPieces}
