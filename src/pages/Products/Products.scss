@@ -20,9 +20,9 @@
   }
 
   .product-item {
-    cursor: pointer;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     height: 250px;
     padding: 1rem;
     margin-right: 3rem;
@@ -34,6 +34,10 @@
   
     span {
       margin-top: 1rem;
+    }
+
+    .product-item-buttons {
+      display: flex;
     }
   }
 

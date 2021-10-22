@@ -13,6 +13,9 @@ import {
   getCategories,
   getProductsWithFilter
 } from '../../store/products/thunks'
+import {
+  updateCreatedProduct
+} from '../../store/products/reducer'
 
 import './Products.scss'
 
@@ -23,6 +26,19 @@ export default function Products() {
   const [checked, setChecked] = useState(true)
   const dispatch = useDispatch()
   const products = useSelector(({ products }) => products)
+  const createdProduct = useSelector(({ products }) => products.createdProduct)
+
+
+  useEffect(() => {
+    const stateStr = localStorage.getItem('createdProduct')
+    if (stateStr) {
+      dispatch(updateCreatedProduct(JSON.parse(stateStr)))
+    }
+  }, [dispatch])
+
+  useEffect(() => {
+    localStorage.setItem('createdProduct', JSON.stringify(createdProduct))
+  }, [createdProduct])
 
   useEffect(() => {
     if (catFilter === 'All') {
@@ -66,7 +82,7 @@ export default function Products() {
           <SecondTab
             checked={checked}
             setChecked={setChecked}
-            createdProduct={products.createdProduct}
+            createdProduct={createdProduct}
           />
         </TabPanel>
       </TabContext>

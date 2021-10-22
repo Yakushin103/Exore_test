@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useFormik } from 'formik'
@@ -25,7 +26,12 @@ const intial = {
 export default function Edit() {
   const { id } = useParams()
   const dispatch = useDispatch()
+  const createdProduct = useSelector(({ products }) => products.createdProduct)
   const product = useSelector(({ products }) => products.createdProduct.filter(item => item._id === id))
+
+  useEffect(() => {
+    localStorage.setItem('createdProduct', JSON.stringify(createdProduct))
+  }, [createdProduct])
 
   const { title, price, description } = !!product.length ? product[0] : intial
 

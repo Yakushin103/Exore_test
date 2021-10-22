@@ -2,8 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider as StoreProvider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import { PersistGate } from 'redux-persist/integration/react'
-import { persistStore } from 'redux-persist'
 
 import App from './App'
 import reportWebVitals from './reportWebVitals'
@@ -11,14 +9,10 @@ import store from './store/store'
 
 import './index.css'
 
-let persistor = persistStore(store);
-
 ReactDOM.render(
   <StoreProvider store={store}>
     <BrowserRouter>
-      <PersistGate loading={null} persistor={persistor}>
-        <App />
-      </PersistGate>
+      <App />
     </BrowserRouter>
   </StoreProvider>,
   document.getElementById('root')

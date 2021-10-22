@@ -1,4 +1,5 @@
-import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useFormik } from 'formik'
 
 import Container from '@mui/material/Container'
@@ -14,6 +15,12 @@ import './Create.scss'
 
 export default function Create() {
   const dispatch = useDispatch()
+  const createdProducts = useSelector(({ products }) => products.createdProduct)
+
+  useEffect(() => {
+    localStorage.setItem('createdProduct', JSON.stringify(createdProducts))
+  }, [createdProducts])
+
   const formik = useFormik({
     initialValues: {
       title: '',

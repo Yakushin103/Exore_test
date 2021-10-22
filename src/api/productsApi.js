@@ -1,7 +1,13 @@
 import axios from 'axios'
 
 const instance = axios.create({
-  baseURL: 'https://fakestoreapi.com'
+  baseURL: 'https://fakestoreapi.com',
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+    'Content-Type': 'application/json',
+    'withCredentials': true,
+    'mode': 'no-cors',
+  }
 })
 
 export const getAll = async (limit) => {

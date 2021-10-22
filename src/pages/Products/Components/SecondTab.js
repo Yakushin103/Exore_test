@@ -4,6 +4,8 @@ import Grid from '@mui/material/Grid'
 import Switch from '@mui/material/Switch'
 import Typography from '@mui/material/Typography'
 import Alert from '@mui/material/Alert'
+import Button from '@mui/material/Button'
+import ModalWindow from '../../../components/ModalWindow'
 
 export default function SecondTab({
   createdProduct,
@@ -39,7 +41,6 @@ export default function SecondTab({
         isCheckedArr.length > 0 ?
           isCheckedArr.map(product => (
             <Grid
-              onClick={() => onEditProduct(product._id)}
               className="product-item"
               key={product._id}
               item
@@ -56,6 +57,15 @@ export default function SecondTab({
               <Typography gutterBottom variant="p">
                 Description: {product.description}
               </Typography>
+              <Grid item className="product-item-buttons">
+                <Button onClick={() => onEditProduct(product._id)}>
+                  Update
+                </Button>
+                <ModalWindow
+                  global={false}
+                  id={product._id}
+                />
+              </Grid>
             </Grid>
           ))
           :

@@ -30,6 +30,10 @@ const mainSlice = createSlice({
         payload
       ]
     }),
+    updateCreatedProduct: (store, { payload }) => ({
+      ...store,
+      createdProduct: payload
+    }),
     removeProduct: (store, { payload }) => ({
       ...store,
       createdProduct: [
@@ -57,7 +61,8 @@ export const {
   updateProduct,
   createdProduct,
   removeProduct,
-  updateProductById
+  updateProductById,
+  updateCreatedProduct
 } = mainSlice.actions
 
 export default mainSlice.reducer
